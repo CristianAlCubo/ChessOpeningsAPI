@@ -1,0 +1,42 @@
+/api/v1/openings/{openingName}:
+  get:
+    tags:
+      - "Opening"
+    summary: "Obtener los movimientos de una apertura."
+    parameters:
+      - name: "openingName"
+        in: "path"
+        description: "Nombre de la apertura."
+        required: true
+        type: "string"
+    description: "Obtiene los movimientos codificados en notación algebraica de una apertura. La identificación de la apertura se realizará mediante su nombre como paremetro en la URL de la petición."
+    responses:
+      202:
+        description: Petición exitosa
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                id:
+                  type: "integer"
+                  description: "ID de la apertura."
+                name:
+                  type: "string"
+                  description: "Nombre de la apertura."
+                movements:
+                  type: "string"
+                  description: "Movimientos de la apertura codificados en notación algebraica."
+              example:
+                {
+                  id: 2,
+                  name: "defensa francesa",
+                  movements: "e4,e6,d4,d5,Nd2,c5,Ngf3,Nc6,exd5,exd5,Bb5,Bd6",
+                }
+      500:
+        description: Petición fallida
+        content:
+          application/json:
+            schema:
+              type: "string"
+              example: { "msg": "Error en el servidor" }

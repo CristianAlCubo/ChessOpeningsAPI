@@ -1,0 +1,26 @@
+/api/v1/openings:
+  get:
+    tags:
+      - "Opening"
+    summary: "Obtener el nombre de todas las aperturas registradas en la BD."
+    description: "Obtener el nombre de todas las aperturas registradas en la BD."
+    responses:
+      202:
+        description: Petición exitosa
+        content:
+          application/json:
+            schema:
+              type: "array"
+              items:
+                type: "string"
+              example:
+                - "defensa francesa"
+                - "defensa siciliana"
+                - "defensa hungara"
+      500:
+        description: Petición fallida
+        content:
+          application/json:
+            schema:
+              type: "string"
+              example: { "msg": "Error en el servidor" }

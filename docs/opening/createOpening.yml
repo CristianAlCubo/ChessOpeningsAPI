@@ -1,0 +1,44 @@
+/api/v1/openings:
+  post:
+    tags:
+      - "Opening"
+    summary: "Registrar una apertura en la BD."
+    produces:
+      - "application/json"
+    requestBody:
+      name: "body"
+      description: "Objeto JSON con los datos de la apertura"
+      required: true
+      content:
+        application/json:
+          schema:
+            type: "object"
+            properties:
+              name:
+                type: "string"
+                description: "Nombre de la apertura"
+              movements:
+                type: "string"
+                description: "Movimientos de la apertura en notación algebraica"
+          example:
+            name: test
+            movements: "e4"
+    description: "Registra en la BD el nombre y los movimientos en notación algebraica de una apertura."
+    responses:
+      202:
+        description: Petición exitosa
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                msg:
+                  type: "string"
+              example: { "msg": "Apertura creada con exito" }
+      500:
+        description: Petición fallida
+        content:
+          application/json:
+            schema:
+              type: "string"
+              example: { "msg": "Error en el servidor" }
